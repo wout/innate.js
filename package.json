@@ -1,0 +1,37 @@
+{
+  "name":         "dollar-sign.js",
+  "description":  "A micro library to ease development with vanilla JS.",
+  "url":          "https://github.com/wout/dollar-sign.js",
+  "homepage":     "https://github.com/wout/dollar-sign.js",
+  "keywords":     ["dom", "ajax", "css", "event"],
+  "author":       "Wout Fierens <wout@mick-wout.com>",
+  "main":         "dollar-sign.js",
+  "version":      "v0.1.0",
+  "jam": {
+    "include": [
+      "dollar-sign.js",
+      "README.md",
+      "MIT-LICENSE"
+    ]
+  },
+  "maintainers": [
+    {
+      "name":     "Wout Fierens",
+      "email":    "wout@mick-wout.com",
+      "web":      "http://mick-wout.com"
+    }
+  ],
+  "licenses": [
+    {
+      "type":     "MIT",
+      "url":      "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "repositories": [
+    {
+      "type":     "git",
+      "url":      "https://github.com/wout/dollar-sign.js"
+    }
+  ],
+  "github":       "https://github.com/wout/dollar-sign.js"
+}
