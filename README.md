@@ -72,7 +72,6 @@ $.on( el, 'click', function( event ) {
 
 This syntax allows you to easily mix dollar-sign.js with vanilla JS and jump between the two whenever nedded. Because with jQuery you will always have to unwrap the object first to access its native properties.
 
-
 ### DOM querying
 
 #### `$.find()`
@@ -352,13 +351,95 @@ Toggles a class on all elements:
 $.toggleClass( '.menu-items', 'fabulous' )
 ```
 
-Optionally, a second parameter can be passed to toggle the class based on a boolean value:
+Optionally, a third parameter can be passed to toggle the class based on a boolean value:
 
 ```js
 $.toggleClass( '.menu-items', 'fabulous', true )
 ```
 
 ### Utilities
+
+#### `$.each()`
+
+`returns`: __`array`__
+
+Iterates a the matching elements:
+
+```js
+$.each( 'form input[]', function( element, index ) {
+  element.id = 'input_' + index
+})
+```
+
+But it also works for arrays:
+
+```js
+$.each( [ 1, 2, 3 ], function( item, index ) {
+  console.log( item )
+})
+```
+
+#### `$.toArray()`
+
+`returns`: __`array`__
+
+Converts an a `NodeList` or `HTMLCollection` to an array:
+
+```js
+var array = $.toArray( document.getElementsByTagName( 'li' ) )
+```
+
+But it can also be used to clone a given array:
+
+```js
+var clone = $.toArray( [ 1, 2, 3 ] )
+```
+
+#### `$.extend()`
+
+`returns`: __`object`__
+
+Extends the first given object with the second one and returns the first:
+
+```js
+var object = { a: 1, b: 2 }
+$.extend( object, { c: 3 })
+```
+
+#### `$.offset()`
+
+`returns`: __`object`__
+
+Get the cumulative offset of an element:
+
+```js
+var offset = $.offset( '#mydiv' )
+vat left = offset.left
+var top = offset.top
+```
+
+#### `$.serialize()`
+
+`returns`: __`string`__
+
+Serializes and escapes the key/value pairs in a form:
+
+```js
+var data_string = $.serialize( form )
+```
+
+This also works with a selector:
+
+```js
+var data_string = $.serialize( '.main-form' )
+```
+
+__Note:__ an empty string will be returnd if the first matched element is not a `<form>`
+
+
+
+
+
 
 
 

@@ -249,10 +249,10 @@
       // execute closure
       if ( typeof closure === 'function' ) {
         if ( el.length == 1 ) {
-          closure( el[0] )
+          closure( el[0], 0 )
         } else {
           for ( var i = 0, il = el.length; i < il; i++ ) {
-            closure( el[i] )
+            closure( el[i], i )
           }
         }
       }

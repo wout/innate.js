@@ -21,7 +21,18 @@ describe( 'each()', function() {
       string += item
     })
 
-    expect( string ).toBe( array.join( '' ) )
+    expect( string ).toBe( '1a2b3c' )
+  })
+
+  it( 'supplies an index as the second argument of the closure', function() {
+    var array = [ 1, 'a', 2, 'b', 3, 'c' ]
+      , string = ''
+
+    $.each( array, function( item, index ) {
+      string += index + '.' + item
+    })
+
+    expect( string ).toBe( '0.11.a2.23.b4.35.c' )
   })
 
   it( 'returns the given array', function() {
