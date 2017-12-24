@@ -1,5 +1,9 @@
 describe( 'attr()', function() {
 
+  afterAll( function() {
+    $.removeClass( '#dom div', 'lol' )
+  })
+
   it( 'sets multiple attributes on the given elements', function() {
     var el = $.attr( '#dom div', {
       'data-red': 'pink'
@@ -42,6 +46,56 @@ describe( 'removeAttr()', function() {
 
   it( 'returns the given list of elements', function() {
     var el = $.removeAttr( '#dom div', 'disabled' )
+    expect( Array.isArray( el ) ).toBeTruthy()
+  })
+
+})
+
+
+describe( 'data()', function() {
+
+  it( 'sets multiple data attributes on the given elements', function() {
+    var el = $.data( '#dom div', {
+      'pink': 'blue'
+    , 'green': 'orange'
+    })
+    expect( el[1].getAttribute( 'data-pink' ) ).toBe( 'blue' )
+    expect( el[1].getAttribute( 'data-green' ) ).toBe( 'orange' )
+  })
+
+  it( 'sets a data attribute on the given elements', function() {
+    var el = $.data( '#dom div', 'disabled', 'disabled' )
+    expect( el[1].getAttribute( 'data-disabled' ) ).toBe( 'disabled' )
+  })
+
+  it( 'returns the given list of elements', function() {
+    var el = $.data( '#dom div', 'class', 'with-out' )
+    expect( Array.isArray( el ) ).toBeTruthy()
+  })
+
+  it( 'returns a specific data attribute of the first element', function() {
+    var el = $.data( '#dom div', 'class', 'lol' )
+    expect( $.data( '#dom div', 'class' ) ).toBe( 'lol' )
+  })
+
+  it( 'returns all data attributes of the first element', function() {
+    var attr = $.data( '#dom div' )
+    expect( typeof attr === 'object' ).toBeTruthy()
+  })
+
+})
+
+
+describe( 'removeAttr()', function() {
+
+  it( 'removes a given attribute', function() {
+    var el = $.data( '#dom div', 'disabled', 'disabled' )
+    el = $.removeData( el, 'disabled' )
+    expect( el[2].getAttribute( 'data-disabled' ) ).toBe( null )
+  })
+
+  it( 'returns the given list of elements', function() {
+    var el = $.removeData( '#dom div', 'disabled' )
     expect( Array.isArray( el ) ).toBeTruthy()
   })
 

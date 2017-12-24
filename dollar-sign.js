@@ -206,7 +206,7 @@
 
     // jQuery: $.removeData()
   , removeData: function( el, key ) {
-      $.removeAttr( el, 'data-' + key )
+      return $.removeAttr( el, 'data-' + key )
     }
 
 
@@ -218,7 +218,7 @@
 
     // Add a given class
   , addClass: function( el, name ) {
-      $.each( el, function( element ) {
+      return $.each( el, function( element ) {
         addClass( element, name )
       })
     }
@@ -226,7 +226,7 @@
 
     // Remove a given class
   , removeClass: function( el, name ) {
-      $.each( el, function( element ) {
+      return $.each( el, function( element ) {
         removeClass( element, name )
       })
     }
@@ -234,7 +234,7 @@
 
     // Toggle a given class
   , toggleClass: function( el, name, force ) {
-      $.each( el, function( element ) {
+      return $.each( el, function( element ) {
         force === true || ( force == null && ! hasClass( element, name ) ) ?
           addClass( element, name ) : removeClass( element, name )
       })
@@ -268,6 +268,16 @@
     }
 
 
+    // Extend a given object
+  , extend: function( obj, src ) {
+      Object.keys( src ).forEach( function( key ) {
+        obj[key] = src[key]
+      })
+
+      return obj
+    }
+
+
     // Get the offset of an element
   , offset: function( el ) {
       var rect = $.first( el ).getBoundingClientRect()
@@ -281,13 +291,38 @@
     }
 
 
-    // Extend a given object
-  , extend: function( obj, src ) {
-      Object.keys( src ).forEach( function( key ) {
-        obj[key] = src[key]
-      })
+    // Serialize form data
+  , serialize: function( form ) {
+      var field, l, s = []
 
-      return obj
+      // use query to find form
+      if ( typeof form === 'string' ) {
+        form = $.first( form )
+      }
+
+      if ( typeof form == 'object' && form.nodeName == 'FORM' ) {
+        var len = form.elements.length
+
+        for ( var i = 0; i < len; i++ ) {
+          field = form.elements[i]
+
+          if ( field.name && ! field.disabled && ! regex.field.test( field.type ) ) {
+            if ( field.type == 'select-multiple' ) {
+              l = form.elements[i].options.length
+
+              for ( var j = 0; j < l; j++ ) {
+                if( field.options[j].selected ) {
+                  s[s.length] = encodeURIComponent( field.name ) + '=' + encodeURIComponent( field.options[j].value )
+                }
+              }
+            } else if ( ( field.type != 'checkbox' && field.type != 'radio' ) || field.checked ) {
+              s[s.length] = encodeURIComponent( field.name ) + '=' + encodeURIComponent( field.value )
+            }
+          }
+        }
+      }
+
+      return s.join( '&' ).replace( regex.space, '+' )
     }
 
 
@@ -395,36 +430,6 @@
       return xhr
     }
 
-
-    // Serialize form data
-  , serialize: function( form ) {
-      var field, l, s = []
-
-      if ( typeof form == 'object' && form.nodeName == 'FORM' ) {
-        var len = form.elements.length
-
-        for ( var i = 0; i < len; i++ ) {
-          field = form.elements[i]
-
-          if ( field.name && ! field.disabled && ! regex.field.test( field.type ) ) {
-            if ( field.type == 'select-multiple' ) {
-              l = form.elements[i].options.length
-
-              for ( var j = 0; j < l; j++ ) {
-                if( field.options[j].selected ) {
-                  s[s.length] = encodeURIComponent( field.name ) + '=' + encodeURIComponent( field.options[j].value )
-                }
-              }
-            } else if ( ( field.type != 'checkbox' && field.type != 'radio' ) || field.checked ) {
-              s[s.length] = encodeURIComponent( field.name ) + '=' + encodeURIComponent( field.value )
-            }
-          }
-        }
-      }
-
-      return s.join( '&' ).replace( regex.space, '+' )
-    }
-
   }
 
 
@@ -523,20 +528,38 @@
       return el.classList.contains( name )
     }
     function addClass( el, name ) {
-      el.classList.add( name )
+      name = name.split( ' ' )
+
+      for ( var i = name.length - 1; i >= 0; i-- ) {
+        el.classList.add( name[i] )
+      }
     }
     function removeClass( el, name ) {
-      el.classList.remove( name )
+      name = name.split( ' ' )
+
+      for ( var i = name.length - 1; i >= 0; i-- ) {
+        el.classList.remove( name[i] )
+      }
     }
   } else {
     function hasClass( el, name ) {
       return new RegExp( '\\b' + name + '\\b' ).test( el.className )
     }
     function addClass( el, name ) {
-      if ( ! hasClass( el, name ) ) { el.className += ' ' + name }
+      name = name.split( ' ' )
+
+      for ( var i = name.length - 1; i >= 0; i-- ) {
+        if ( ! hasClass( el, name[i] ) ) {
+          el.className = ( el.className + ' ' + name[i] ).trim()
+        }
+      }
     }
     function removeClass( el, name ) {
-      el.className = el.className.replace( new RegExp( '\\b' + name + '\\b', 'g' ), '' )
+      name = name.split( ' ' )
+
+      for ( var i = name.length - 1; i >= 0; i-- ) {
+        el.className = el.className.replace( new RegExp( '\\b' + name[i] + '\\b', 'g' ), '' )
+      }
     }
   }
 
