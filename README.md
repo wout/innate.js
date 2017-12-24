@@ -49,7 +49,7 @@ var elements = document.getElementsByClassName( 'my-class' )
 var el = $.attr( elements, 'disabled', 'disabled' )
 ```
 
-So where you are used to the following chain in jQuery:
+So where you are used to the following method chain in jQuery:
 
 ```js
 $( '[data-value]' )
@@ -70,7 +70,7 @@ $.on( el, 'click', function( event ) {
 })
 ```
 
-This syntax allows you to easily mix dollar-sign.js with vanilla JS and jump between the two whenever nedded. Because with jQuery you will always have to unwrap the object first to access its native properties.
+This syntax allows you to easily mix dollar-sign.js with vanilla JS and jump between the two whenever needed. Because with jQuery you will always have to unwrap the object first to access its native properties.
 
 ### DOM querying
 
