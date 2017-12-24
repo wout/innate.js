@@ -21,7 +21,7 @@ Dollar Sign provides:
 
 Admittedly, a lot of code is borrowed form plainjs.com, but Dollar Sign provides the ease of use of jQuery when working with a collection of elements or even starting from CSS selectors.
 
-# Usage
+## Usage
 
 The `$` global carries all the available methods. To query the DOM for example, the `find()` method can be used:
 
@@ -49,9 +49,31 @@ var elements = document.getElementsByClassName( 'my-class' )
 var el = $.attr( elements, 'disabled', 'disabled' )
 ```
 
-## DOM querying
+So where you are used to the following chain in jQuery:
 
-### `$.find()`
+```js
+$( '[data-value]' )
+  .addClass( 'highlighted' )
+  .css({ color: 'pink' })
+  .on( 'click', function( event ) {
+    alert( event )
+  })
+```
+
+In Dollar Sign the same will look like:
+
+```js
+var el = $.addClass( '[data-value]', 'highlighted' )
+$.css( el, { color: 'pink' })
+$.on( el, 'click', function( event ) {
+  alert( event )
+})
+```
+
+
+### DOM querying
+
+#### `$.find()`
 
 `returns`: __`array`__
 
@@ -60,7 +82,7 @@ var el = $.attr( elements, 'disabled', 'disabled' )
 var el = $.find( 'div' )
 ```
 
-### `$.first()`
+#### `$.first()`
 
 `returns`: __`Element`__
 
@@ -69,9 +91,9 @@ var el = $.find( 'div' )
 var element = $.first( 'header' )
 ```
 
-## Events
+### Events
 
-### `$.on()`
+#### `$.on()`
 
 `returns`: __`array`__
 
