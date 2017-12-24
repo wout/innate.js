@@ -499,7 +499,7 @@ Some things in jQuery are nice to have. Like creating elements with class names 
 $( '<div id='myDiv' class='class1 class2'>' )
 ```
 
-Dollar-sign.js endorses the use of vanilla JS. So he same could be achieved with:
+Dollar-sign.js endorses the use of vanilla JS. So the same can be achieved with:
 
 ```js
 $.attr( document.createElement( 'div' ), { id: 'myDiv', class: 'class1 class2' })
