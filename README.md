@@ -122,9 +122,7 @@ $.on( 'a', 'click', function() {
 The fourth parameter will take an object with options:
 
 ```js
-$.on( 'a', 'click', function() {
-  console.log( 'Dollar Sign' )
-}, options )
+$.on( 'a', 'click', handler, options )
 ```
 
 #### `$.off()`
@@ -154,6 +152,80 @@ $.live( 'a', 'click', handler, context )
 ```
 
 ### CSS
+
+#### `$.show()`
+
+`returns`: __`array`__
+
+Shows all elements.
+
+```js
+$.show( 'div.tucked-away' )
+```
+
+#### `$.hide()`
+
+`returns`: __`array`__
+
+Hides all elements.
+
+```js
+$.hide( 'div.in-the-way' )
+```
+
+#### `$.toggle()`
+
+`returns`: __`array`__
+
+Toggles visibility of all elements.
+
+```js
+$.toggle( 'div.toggle-away' )
+```
+
+Optionally, a second parameter can be passed to toggle based on a boolean value:
+
+```js
+$.toggle( 'div.toggle-away', true )
+```
+
+#### `$.css()`
+
+`returns`: __`array`__ `as setter`
+`returns`: __`value`__ `as getter`
+
+Sets a single CSS property:
+
+```js
+$.css( 'div > p', 'color', 'pink' )
+```
+
+Sets multiple CSS properties:
+
+```js
+$.css( 'div > p', {
+  color: 'pink'
+, display: 'inline'
+})
+```
+
+Gets a CSS property of the first element found:
+
+```js
+var color = $.css( 'div > p', 'color' )
+```
+
+Gets an object with all CSS properties of the first element found:
+
+```js
+var properties = $.css( 'div > p' )
+```
+
+
+### Attributes
+
+
+
 
 
 
