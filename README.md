@@ -1,14 +1,14 @@
-# dollar-sign.js
+# Dollar-sign.js
 
-A micro library eliminating the need for jQuery for most common tasks.
+A micro library (3Kb) eliminating the need for jQuery for most common tasks.
 
-dollar-sign.js does not have any dependencies and is licensed under the terms of the MIT License.
+Dollar-sign.js does not have any dependencies and is licensed under the terms of the MIT License.
 
 ## Why?
 
-In many scenarios we need only a few of jQuery's functionality, but nontheless we load the whole library even though we need only 10% of it. Dollar Sign aims to eliminate the need of jQuery and endorses the use of vanilla JS.
+In many scenarios we need only a few of jQuery's functionality, but nontheless we load the whole library even though we need only 10% of it. dollar-sign.js aims to eliminate the need of jQuery and endorses the use of vanilla JS.
 
-Dollar Sign provides:
+dollar-sign.js provides:
 - DOM querying
 - easy class manipulation
 - working with collections of elements to perform a single task
@@ -19,7 +19,7 @@ Dollar Sign provides:
 - form serializer
 - ...
 
-Admittedly, a lot of code is borrowed form plainjs.com, but Dollar Sign provides the ease of use of jQuery when working with a collection of elements or even starting from CSS selectors.
+Admittedly, a lot of code is borrowed form plainjs.com, but dollar-sign.js provides the ease of use of jQuery when working with a collection of elements or even starting from CSS selectors.
 
 ## Usage
 
@@ -32,7 +32,7 @@ var elements = $.find( '.my-selector' )
 
 Note that most methods accepting a selector as the first argument will return an array with the result of the DOM query.
 
-In Dollar Sign, methods can't be chained like in jQuery. But instead of a selector, Dollar Sign also accepts an existing array of elements:
+In dollar-sign.js, methods can't be chained like in jQuery. But instead of a selector, dollar-sign.js also accepts an existing array of elements:
 
 ```js
 var el = $.addClass( 'section.my-class', 'active' )
@@ -60,7 +60,7 @@ $( '[data-value]' )
   })
 ```
 
-In Dollar Sign the same will look like:
+In dollar-sign.js the same will look like:
 
 ```js
 var el = $.addClass( '[data-value]', 'highlighted' )
@@ -69,6 +69,8 @@ $.on( el, 'click', function( event ) {
   alert( event )
 })
 ```
+
+This syntax allows you to easily mix dollar-sign.js with vanilla JS and jump between the two whenever nedded. Because with jQuery you will always have to unwrap the object first to access its native properties.
 
 
 ### DOM querying
@@ -115,7 +117,7 @@ Bind an event to the given element list.
 
 ```js
 $.on( 'a', 'click', function() {
-  console.log( 'Dollar Sign' )
+  console.log( 'dollar-sign.js' )
 })
 ```
 
@@ -224,9 +226,89 @@ var properties = $.css( 'div > p' )
 
 ### Attributes
 
+#### `$.attr()`
 
+`returns`: __`array`__ `as setter` <br>
+`returns`: __`value`__ `as getter`
 
+Sets a single attribute on all elements:
 
+```js
+$.attr( 'input', 'style', 'color:pink' )
+```
+
+Sets multiple attributes:
+
+```js
+$.attr( 'input', {
+  style: 'color:pink'
+, disabled: 'disabled'
+})
+```
+
+Gets an attribute of the first element found:
+
+```js
+var disabled = $.attr( 'input', 'disabled' )
+```
+
+Gets an object with all attributes of the first element found:
+
+```js
+var attributes = $.attr( 'form' )
+```
+
+#### `$.removeAttr()`
+
+`returns`: __`array`__
+
+Removes an attribute:
+
+```js
+$.removeAttr( 'input[type=submit]', 'disabled' )
+```
+
+#### `$.data()`
+
+`returns`: __`array`__ `as setter` <br>
+`returns`: __`value`__ `as getter`
+
+Sets a single data attribute on all elements:
+
+```js
+$.data( 'input', 'color', 'pink' )
+```
+
+Sets multiple data attributes:
+
+```js
+$.data( 'input', {
+  color: 'pink'
+, size: 'XXS'
+})
+```
+
+Gets a data attribute of the first element found:
+
+```js
+var color = $.data( 'input', 'color' )
+```
+
+Gets an object with all data attributes of the first element found:
+
+```js
+var data = $.data( 'input' )
+```
+
+#### `$.removeData()`
+
+`returns`: __`array`__
+
+Removes an data attribute:
+
+```js
+$.removeData( 'input', 'color' )
+```
 
 
 
