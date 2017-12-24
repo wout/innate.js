@@ -191,7 +191,7 @@ $.toggle( 'div.toggle-away', true )
 
 #### `$.css()`
 
-`returns`: __`array`__ `as setter`
+`returns`: __`array`__ `as setter` <br>
 `returns`: __`value`__ `as getter`
 
 Sets a single CSS property:
