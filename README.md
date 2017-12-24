@@ -276,13 +276,13 @@ $.removeAttr( 'input[type=submit]', 'disabled' )
 Sets a single data attribute on all elements:
 
 ```js
-$.data( 'input', 'color', 'pink' )
+$.data( '#mydiv', 'color', 'pink' )
 ```
 
 Sets multiple data attributes:
 
 ```js
-$.data( 'input', {
+$.data( '#mydiv', {
   color: 'pink'
 , size: 'XXS'
 })
@@ -291,13 +291,13 @@ $.data( 'input', {
 Gets a data attribute of the first element found:
 
 ```js
-var color = $.data( 'input', 'color' )
+var color = $.data( '#mydiv', 'color' )
 ```
 
 Gets an object with all data attributes of the first element found:
 
 ```js
-var data = $.data( 'input' )
+var data = $.data( '#mydiv' )
 ```
 
 #### `$.removeData()`
@@ -307,12 +307,58 @@ var data = $.data( 'input' )
 Removes an data attribute:
 
 ```js
-$.removeData( 'input', 'color' )
+$.removeData( '#mydiv', 'color' )
 ```
 
+### Classes
 
+#### `$.hasClass()`
 
+`returns`: __`boolean`__
 
+Tests the existance of a class on the first element found:
+
+```js
+$.hasClass( '#mydiv', 'fabulous' )
+```
+
+#### `$.addClass()`
+
+`returns`: __`array`__
+
+Adds a class to all elements:
+
+```js
+$.addClass( '.menu-items', 'fabulous' )
+```
+
+#### `$.removeClass()`
+
+`returns`: __`array`__
+
+Removes a class from all elements:
+
+```js
+$.removeClass( '.menu-items', 'fabulous' )
+```
+
+#### `$.toggleClass()`
+
+`returns`: __`array`__
+
+Toggles a class on all elements:
+
+```js
+$.toggleClass( '.menu-items', 'fabulous' )
+```
+
+Optionally, a second parameter can be passed to toggle the class based on a boolean value:
+
+```js
+$.toggleClass( '.menu-items', 'fabulous', true )
+```
+
+### Utilities
 
 
 
