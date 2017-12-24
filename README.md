@@ -357,6 +357,60 @@ Optionally, a third parameter can be passed to toggle the class based on a boole
 $.toggleClass( '.menu-items', 'fabulous', true )
 ```
 
+### Ajax
+
+#### `$.get()`
+
+`returns`: __`XMLHttpRequest`__
+
+Perform a simple AJAX GET request:
+
+```js
+$.get( '/api/item/1.json', function( xhr ) {
+  console.log( xhr )
+})
+```
+
+
+#### `$.post()`
+
+`returns`: __`XMLHttpRequest`__
+
+Perform a simple AJAX POST request:
+
+```js
+$.post( '/api/item/1.json', function( xhr ) {
+  console.log( xhr )
+})
+```
+
+
+#### `$.ajax()`
+
+`returns`: __`XMLHttpRequest`__
+
+Perform an extended AJAX POST request:
+
+```js
+$.ajax( '/api/item/1.json', {
+  // method (or type works too)
+  method: 'PUT'
+
+  // data (object will be serialized)
+, data: {}
+
+  // callbacks
+, success: function() {}
+, complete: function() {}
+, error: function() {}
+, abort: function() {}
+  
+  // headers
+, headers: {}
+})
+```
+
+
 ### Utilities
 
 #### `$.each()`
@@ -414,7 +468,7 @@ Get the cumulative offset of an element:
 
 ```js
 var offset = $.offset( '#mydiv' )
-vat left = offset.left
+var left = offset.left
 var top = offset.top
 ```
 
@@ -434,7 +488,7 @@ This also works with a selector:
 var data_string = $.serialize( '.main-form' )
 ```
 
-__Note:__ an empty string will be returnd if the first matched element is not a `<form>`
+__Note:__ an empty string will be returned if the first matched element is not a `<form>`.
 
 
 
