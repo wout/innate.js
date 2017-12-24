@@ -491,8 +491,21 @@ var data_string = $.serialize( '.main-form' )
 __Note:__ an empty string will be returned if the first matched element is not a `<form>`.
 
 
+## Sugarless
 
+Some things in jQuery are nice to have. Like creating elements with class names and ids in one go:
 
+```js
+$( '<div id='myDiv' class='class1 class2'>' )
+```
+
+Dollar-sign.js endorses the use of vanilla JS. So he same could be achieved with:
+
+```js
+$.attr( document.createElement( 'div' ), { id: 'myDiv', class: 'class1 class2' })
+```
+
+A bit less concise, but does the same thing and it is faster.
 
 
 
