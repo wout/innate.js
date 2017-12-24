@@ -1,6 +1,6 @@
 # dollar-sign.js
 
-A micro library to that eliminates the need for jQuery for most common tasks.
+A micro library eliminating the need for jQuery for most common tasks.
 
 dollar-sign.js does not have any dependencies and is licensed under the terms of the MIT License.
 
@@ -77,18 +77,32 @@ $.on( el, 'click', function( event ) {
 
 `returns`: __`array`__
 
+Get an element list for the given selector.
+
 ```js
-// Get an element list for the given selector.
 var el = $.find( 'div' )
+```
+
+Optionally, it allows a context to be passed as the second parameter (defaults to `document`):
+
+```js
+$.find( 'a.social', $.first( '#main_content' ) )
 ```
 
 #### `$.first()`
 
 `returns`: __`Element`__
 
+Get a single element for the given selector.
+
 ```js
-// Get a single element for the given selector.
 var element = $.first( 'header' )
+```
+
+Optionally, it allows a context to be passed as the second parameter (defaults to `document`):
+
+```js
+$.first( 'nav', document.querySelector( 'header' ) )
 ```
 
 ### Events
@@ -97,11 +111,49 @@ var element = $.first( 'header' )
 
 `returns`: __`array`__
 
+Bind an event to the given element list.
 
+```js
+$.on( 'a', 'click', function() {
+  console.log( 'Dollar Sign' )
+})
+```
 
+The fourth parameter will take an object with options:
 
+```js
+$.on( 'a', 'click', function() {
+  console.log( 'Dollar Sign' )
+}, options )
+```
 
+#### `$.off()`
 
+`returns`: __`array`__
+
+Unbind an event to the given element list. This works exactly the same as `$.on()`:
+
+```js
+$.off( 'a', 'mousemove', handler )
+```
+
+#### `$.live()`
+
+`returns`: __`array`__
+
+Attach an event handler for all elements which match the current selector, now and in the future:
+
+```js
+$.live( 'a', 'click', handler )
+```
+
+The fourth parameter defines the context:
+
+```js
+$.live( 'a', 'click', handler, context )
+```
+
+### CSS
 
 
 

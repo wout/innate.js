@@ -1,6 +1,6 @@
 {
   "name":         "dollar-sign.js",
-  "description":  "A micro library to ease development with vanilla JS.",
+  "description":  "A micro library eliminating the need for jQuery for most common tasks.",
   "url":          "https://github.com/wout/dollar-sign.js",
   "homepage":     "https://github.com/wout/dollar-sign.js",
   "keywords":     ["dom", "ajax", "css", "event"],
