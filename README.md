@@ -106,6 +106,57 @@ Optionally, it allows a context to be passed as the second parameter (defaults t
 $.first( 'nav', document.querySelector( 'header' ) )
 ```
 
+### DOM manipulation
+
+#### `$.appendTo()`
+
+`returns`: __`array`__
+
+Appends a given element or list of elements to the given parent in the second parameter, which can be a selector or an element.
+
+```js
+$.appendTo( document.createElement( 'div' ), 'body' )
+```
+
+#### `$.prependTo()`
+
+`returns`: __`array`__
+
+Appends a given element or list of elements to the given parent in the second parameter, which can be a selector or an element.
+
+```js
+$.prependTo( document.createElement( 'div' ), 'body' )
+```
+
+#### `$.insertAt()`
+
+`returns`: __`array`__
+
+Inserts one or more elements to the given parent at a given position.
+
+```js
+$.insertAt( document.createElement( 'div' ), 'body', 3 )
+```
+
+The position parameter can also be another child element of the parent.
+
+```js
+var header = $.first( 'header' )
+$.insertAt( document.createElement( 'div' ), header, header.children[5] )
+```
+
+Note that if the element passed as the position parameter is not a child of the parent, the elements will be inserted starting at position 0.
+
+#### `$.remove()`
+
+`returns`: __`array`__
+
+Remove one or more elements from the DOM.
+
+```js
+$.remove( '.removable' )
+```
+
 ### Events
 
 #### `$.on()`

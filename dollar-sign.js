@@ -50,6 +50,49 @@
     }
 
 
+    // Append elements
+  , appendTo: function( el, parent ) {
+      parent = $.first( parent )
+
+      return $.each( el, function( element ) {
+        parent.appendChild( element )
+      })
+    }
+
+
+    // Prepend elements
+  , prependTo: function( el, parent ) {
+      return $.insertAt( el, parent, 0 )
+    }
+
+
+    // Insert elements at a given position
+  , insertAt: function( el, parent, i ) {
+      parent = $.first( parent )
+      
+      // get position if an element is given
+      if ( i instanceof Element ) {
+        i = $.toArray( parent.children ).indexOf( i )
+      }
+
+      // make sure position is a positive number or zero
+      i = typeof i !== 'number' || i < 0 ? 0 : i
+
+      return $.each( el, function( element ) {
+        parent.insertBefore( element, parent.children[i] )
+        i++
+      })
+    }
+
+
+    // Remove element
+  , remove: function( el ) {
+      return $.each( el, function( element ) {
+        element.parentNode.removeChild( element )
+      })
+    }
+
+
     // Add event listener
   , on: function( el, type, handler, options ) {
       return $.each( el, function( element ) {

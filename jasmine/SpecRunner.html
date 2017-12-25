@@ -19,48 +19,81 @@
   <script src="spec/QuerySpec.js"></script>
   <script src="spec/EventSpec.js"></script>
   <script src="spec/CssSpec.js"></script>
+  <script src="spec/DomSpec.js"></script>
   <script src="spec/AttrSpec.js"></script>
   <script src="spec/ClassSpec.js"></script>
   <script src="spec/AjaxSpec.js"></script>
   <script src="spec/UtilSpec.js"></script>
 
-  <style>#dom { width:0;height:0;position:absolute;top:100%;left:100%;overflow:hidden; }</style>
+  <style>.test-dom { width:0;height:0;position:absolute;top:100%;left:100%;overflow:hidden; }</style>
 
-  <div id="dom">
-    <header>
-      <h1>Mastaba Abatsam</h1>
-      <nav>
-        <ul class="menu">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/page">Page</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="logo"></div>
-    </header>
-    <section class="content">
-      <div class="text">
-        <p>Mastaba</p>
-      </div>
-      <div class="tags">
-        mas, ta, ba
-      </div>
-      <div class="comments">
-        <form>
-          <input type="text" name="comment[name]" value="Me">
-          <input type="text" name="comment[email]" value="me@jou.he">
-          <textarea name="comment[body]">I like.</textarea>
-        </form>
-      </div>
-    </section>
-    <footer>
-      <div>
-        Mastaba &copy; 2017 Wout Fierens
-      </div>
-    </footer>
+  <div class="test-dom">
+    <div id="dom">
+      <header>
+        <h1>Mastaba Abatsam</h1>
+        <nav>
+          <ul class="menu">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/page">Page</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="logo"></div>
+      </header>
+      <section class="content">
+        <div class="text">
+          <p>Mastaba</p>
+        </div>
+        <div class="tags">
+          mas, ta, ba
+        </div>
+        <div class="comments">
+          <form>
+            <input type="text" name="comment[name]" value="Me">
+            <input type="text" name="comment[email]" value="me@jou.he">
+            <textarea name="comment[body]">I like.</textarea>
+          </form>
+        </div>
+      </section>
+      <footer>
+        <div>
+          Mastaba &copy; 2017 Wout Fierens
+        </div>
+      </footer>
+    </div>
+
+    <div id="append">
+      <div>one</div>
+      <div>two</div>
+      <div>last</div>
+    </div>
+
+    <div id="prepend">
+      <div>one</div>
+      <div>two</div>
+      <div>last</div>
+    </div>
+
+    <div id="insert">
+      <div>one</div>
+      <div>two</div>
+      <div>last</div>
+    </div>
+
+    <div id="insert_many">
+      <div>one</div>
+      <div>two</div>
+      <div>last</div>
+    </div>
+
+    <div id="remove">
+      <div>one</div>
+      <div>two</div>
+      <div>last</div>
+    </div>
   </div>
 
 </head>
