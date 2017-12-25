@@ -6,7 +6,7 @@
       // return as is if given subject is aything other than a string (selector)
       if ( Array.isArray( subject ) ) {
         return subject
-      } else if ( subject instanceof Element ) {
+      } else if ( subject instanceof Element || subject instanceof HTMLDocument ) {
         return [ subject ] 
       } else if ( subject instanceof NodeList || subject instanceof HTMLCollection ) {
         return $.toArray( subject )

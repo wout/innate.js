@@ -1,6 +1,6 @@
 describe( 'find()', function() {
 
-  describe( 'accpets', function() {
+  describe( 'accepts', function() {
 
     it( 'a dom selector and returns it as an array of elements', function() {
       var result = $.find( 'header' )
@@ -16,6 +16,12 @@ describe( 'find()', function() {
     it( 'a HTML element and returns it in an array', function() {
       var result = $.find( document.getElementById( 'dom' ) )
       expect( result[0] instanceof Element ).toBeTruthy()
+      expect( Array.isArray( result ) ).toBeTruthy()
+    })
+
+    it( 'a HTML document and returns it in an array', function() {
+      var result = $.find( document )
+      expect( result[0] instanceof HTMLDocument ).toBeTruthy()
       expect( Array.isArray( result ) ).toBeTruthy()
     })
 
