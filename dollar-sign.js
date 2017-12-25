@@ -329,7 +329,7 @@
 
 
     // Serialize form data
-  , serialize: function( form ) {
+  , serialize: function( form, closure ) {
       var field, l, s = []
 
       // use query to find form
@@ -343,17 +343,19 @@
         for ( var i = 0; i < len; i++ ) {
           field = form.elements[i]
 
-          if ( field.name && ! field.disabled && ! regex.field.test( field.type ) ) {
-            if ( field.type == 'select-multiple' ) {
-              l = form.elements[i].options.length
+          if ( typeof closure !== 'function' || closure( field ) ) {
+            if ( field.name && ! field.disabled && ! regex.field.test( field.type ) ) {
+              if ( field.type == 'select-multiple' ) {
+                l = form.elements[i].options.length
 
-              for ( var j = 0; j < l; j++ ) {
-                if( field.options[j].selected ) {
-                  s[s.length] = encodeURIComponent( field.name ) + '=' + encodeURIComponent( field.options[j].value )
+                for ( var j = 0; j < l; j++ ) {
+                  if( field.options[j].selected ) {
+                    s[s.length] = encodeURIComponent( field.name ) + '=' + encodeURIComponent( field.options[j].value )
+                  }
                 }
+              } else if ( ( field.type != 'checkbox' && field.type != 'radio' ) || field.checked ) {
+                s[s.length] = encodeURIComponent( field.name ) + '=' + encodeURIComponent( field.value )
               }
-            } else if ( ( field.type != 'checkbox' && field.type != 'radio' ) || field.checked ) {
-              s[s.length] = encodeURIComponent( field.name ) + '=' + encodeURIComponent( field.value )
             }
           }
         }

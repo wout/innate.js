@@ -541,6 +541,14 @@ var data_string = $.serialize( '.main-form' )
 
 __Note:__ an empty string will be returned if the first matched element is not a `<form>`.
 
+Finally, a closure can be provided as the second argument to filter out element values:
+
+```js
+var data_string = $.serialize( '.main-form', function( input ) {
+  return input.nodeName === 'INPUT'
+})
+```
+
 
 ## Sugarless
 

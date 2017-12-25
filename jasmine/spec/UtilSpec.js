@@ -101,6 +101,16 @@ describe( 'serialize()', function() {
     expect( data ).toContain( 'comment%5Bname%5D=Me' )
   })
 
+  it( 'serializes a for with a closure', function() {
+    var data = $.serialize( '#dom form', function( input ) {
+      return input.nodeName == 'INPUT'
+    })
+    expect( data ).toContain( 'comment%5Bname%5D=Me' )
+    expect( data ).toContain( 'comment%5Bemail%5D=me%40you.he' )
+    expect( data ).not.toContain( 'comment%5Bbody%5D' )
+    expect( data ).not.toContain( 'verify' )
+  })
+
 })
 
 
