@@ -6,7 +6,7 @@
   "keywords":     ["dom", "ajax", "css", "event"],
   "author":       "Wout Fierens <wout@mick-wout.com>",
   "main":         "dollar-sign.js",
-  "version":      "0.1.4",
+  "version":      "0.1.5",
   "jam": {
     "include": [
       "dollar-sign.js",
