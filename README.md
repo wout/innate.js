@@ -143,13 +143,13 @@ $.off( 'a', 'mousemove', handler )
 Attach an event handler for all elements which match the current selector, now and in the future:
 
 ```js
-$.live( 'a', 'click', handler )
+$.live( 'body', 'click', 'a', handler )
 ```
 
-The fourth parameter defines the context:
+The fifth parameter will take an object with options:
 
 ```js
-$.live( 'a', 'click', handler, context )
+$.live( document, 'click', 'a', handler, options )
 ```
 
 ### CSS

@@ -67,26 +67,20 @@
 
 
     // Live event listener
-  , live: function( selector, type, handler, context ) {
-      if ( typeof selector === 'string' ) {
-        ( context || document ).addEventListener( type, function( e ) {
-          var found, el = e.target || e.srcElement
+  , live: function( el, type, selector, handler, options ) {
+      return $.each( el, function( element ) {
+        element.addEventListener( type, function( event ) {
+          var found, e = event.target || event.srcElement
 
-          while ( el && el.matches && el !== context && ! ( found = el.matches( selector ) ) ) {
-            el = el.parentElement
+          while ( e && e.matches && e !== element && ! ( found = e.matches( selector ) ) ) {
+            e = e.parentElement
           }
 
           if ( found ) {
-            handler.call( el, e )
+            handler.call( e, event )
           }
-        })
-
-      } else {
-        throw 'Expected the selector on live() to be a string but it is not.'
-      }
-
-      // return an element list for consistency
-      return $.find( selector )
+        }, options )
+      })
     }
 
 
