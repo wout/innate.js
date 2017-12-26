@@ -439,7 +439,18 @@
 
           // success callback
           if ( xhr.status == 200 ) {
-            if ( typeof settings.success === 'function' ) settings.success( xhr.responseText )
+            if ( typeof settings.success === 'function' ) {
+              var result
+
+              try {
+                result = JSON.parse( xhr.responseText )
+                xhr.responseJSON = result
+              } catch (e) {
+                result = xhr.responseText
+              }
+
+              settings.success( result, xhr )
+            }
           }
         }
       }
