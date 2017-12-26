@@ -172,7 +172,7 @@
     }
 
 
-    // jQuery: $.attr()
+    // Set or get one or multiple attributes
   , attr: function( el, key, value ) {
       // act as a setter with an object of properties
       if ( typeof key === 'object' ) {
@@ -200,7 +200,7 @@
     }
 
 
-    // jQuery: $.removeAttr()
+    // Remove an attribute
   , removeAttr: function( el, key ) {
       return $.each( el, function( element ) {
         element.removeAttribute( key )
@@ -208,7 +208,7 @@
     }
 
 
-    // jQuery: $.data()
+    // Set or get one or multiple data attributes
   , data: function( el, key, value ) {
       // act as a setter with an object of properties
       if ( typeof key === 'object' ) {
@@ -241,7 +241,7 @@
     }
 
 
-    // jQuery: $.removeData()
+    // Remove data attribute
   , removeData: function( el, key ) {
       return $.removeAttr( el, 'data-' + key )
     }
@@ -427,8 +427,15 @@
       // watch state changes
       xhr.onreadystatechange = function() {
         if ( xhr.readyState === XMLHttpRequest.DONE ) {
+          try {
+            var result = JSON.parse( xhr.responseText )
+            xhr.responseJSON = result
+          } catch (e) {
+            var result = xhr.responseText
+          }
+
           // complete callback
-          if ( typeof settings.complete === 'function' ) settings.complete( xhr, 'success' )
+          if ( typeof settings.complete === 'function' ) settings.complete( xhr )
 
           // status code callback
           if ( typeof settings.statusCode === 'object' ) {
@@ -436,21 +443,12 @@
               settings.statusCode[xhr.status]( xhr )
             }
           }
-
+          
           // success callback
           if ( xhr.status == 200 ) {
-            if ( typeof settings.success === 'function' ) {
-              var result
-
-              try {
-                result = JSON.parse( xhr.responseText )
-                xhr.responseJSON = result
-              } catch (e) {
-                result = xhr.responseText
-              }
-
-              settings.success( result, xhr )
-            }
+            if ( typeof settings.success === 'function' ) settings.success( result, xhr )
+          } else {
+            if ( typeof settings.error === 'function' ) settings.error( xhr )
           }
         }
       }
