@@ -6,7 +6,7 @@ Dollar-sign.js does not have any dependencies and is licensed under the terms of
 
 ## Why?
 
-In many scenarios we need only a few of jQuery's functionality, but nontheless we load the whole library even though we need only 10% of it. dollar-sign.js aims to eliminate the need of jQuery and endorses the use of vanilla JS.
+In many scenarios we need only a small part of jQuery's functionality, but nontheless we load the whole library even though we need only 10% of it. Dollar-sign.js aims to eliminate the need of jQuery and endorses the use of vanilla JS.
 
 dollar-sign.js provides:
 - DOM querying
