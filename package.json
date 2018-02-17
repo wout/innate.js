@@ -1,15 +1,15 @@
 {
-  "name":         "dollar-sign.js",
+  "name":         "innate.js",
   "description":  "A micro library eliminating the need for jQuery for most common tasks.",
-  "url":          "https://github.com/wout/dollar-sign.js",
-  "homepage":     "https://github.com/wout/dollar-sign.js",
+  "url":          "https://github.com/wout/innate.js",
+  "homepage":     "https://github.com/wout/innate.js",
   "keywords":     ["dom", "ajax", "css", "event"],
   "author":       "Wout Fierens <wout@mick-wout.com>",
-  "main":         "dollar-sign.js",
-  "version":      "0.1.7",
+  "main":         "innate.js",
+  "version":      "0.2.0",
   "jam": {
     "include": [
-      "dollar-sign.js",
+      "innate.js",
       "README.md",
       "MIT-LICENSE"
     ]
@@ -30,8 +30,8 @@
   "repositories": [
     {
       "type":     "git",
-      "url":      "https://github.com/wout/dollar-sign.js"
+      "url":      "https://github.com/wout/innate.js"
     }
   ],
-  "github":       "https://github.com/wout/dollar-sign.js"
+  "github":       "https://github.com/wout/innate.js"
 }

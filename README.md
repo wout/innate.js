@@ -1,14 +1,14 @@
-# Dollar-sign.js
+# innate.js
 
 A micro library (3Kb) eliminating the need for jQuery for most common tasks.
 
-Dollar-sign.js does not have any dependencies and is licensed under the terms of the MIT License.
+innate.js does not have any dependencies and is licensed under the terms of the MIT License.
 
 ## Why?
 
-In many scenarios we need only a small part of jQuery's functionality, but nontheless we load the whole library even though we need only 10% of it. Dollar-sign.js aims to eliminate the need of jQuery and endorses the use of vanilla JS.
+In many scenarios we need only a small part of jQuery's functionality, but nontheless we load the whole library even though we need only 10% of it. innate.js aims to eliminate the need of jQuery and endorses the use of vanilla JS.
 
-dollar-sign.js provides:
+innate.js provides:
 - DOM querying
 - easy class manipulation
 - working with collections of elements to perform a single task
@@ -19,7 +19,7 @@ dollar-sign.js provides:
 - form serializer
 - ...
 
-Admittedly, a lot of code is borrowed form plainjs.com, but dollar-sign.js provides the ease of use of jQuery when working with a collection of elements or even starting from CSS selectors.
+Admittedly, a lot of code is borrowed form plainjs.com, but innate.js provides the ease of use of jQuery when working with a collection of elements or even starting from CSS selectors.
 
 ## Usage
 
@@ -32,7 +32,7 @@ var elements = $.find( '.my-selector' )
 
 Note that most methods accepting a selector as the first argument will return an array with the result of the DOM query.
 
-In dollar-sign.js, methods can't be chained like in jQuery. But instead of a selector, dollar-sign.js also accepts an existing array of elements:
+In innate.js, methods can't be chained like in jQuery. But instead of a selector, innate.js also accepts an existing array of elements:
 
 ```js
 var el = $.addClass( 'section.my-class', 'active' )
@@ -60,7 +60,7 @@ $( '[data-value]' )
   })
 ```
 
-In dollar-sign.js the same will look like:
+In innate.js the same will look like:
 
 ```js
 var el = $.addClass( '[data-value]', 'highlighted' )
@@ -70,7 +70,7 @@ $.on( el, 'click', function( event ) {
 })
 ```
 
-This syntax allows you to easily mix dollar-sign.js with vanilla JS and jump between the two whenever needed. Because with jQuery you will always have to unwrap the object first to access its native properties.
+This syntax allows you to easily mix innate.js with vanilla JS and jump between the two whenever needed. Because with jQuery you will always have to unwrap the object first to access its native properties.
 
 ### DOM querying
 
@@ -167,7 +167,7 @@ Bind an event to the given element list.
 
 ```js
 $.on( 'a', 'click', function() {
-  console.log( 'dollar-sign.js' )
+  console.log( 'innate.js' )
 })
 ```
 
@@ -558,7 +558,7 @@ Some things in jQuery are nice to have. Like creating elements with class names 
 $( '<div id='myDiv' class='class1 class2'>' )
 ```
 
-Dollar-sign.js endorses the use of vanilla JS. So the same can be achieved with:
+innate.js endorses the use of vanilla JS. So the same can be achieved with:
 
 ```js
 $.attr( document.createElement( 'div' ), { id: 'myDiv', class: 'class1 class2' })
