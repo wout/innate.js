@@ -567,5 +567,26 @@ $.attr( document.createElement( 'div' ), { id: 'myDiv', class: 'class1 class2' }
 A bit less concise, but does the same thing and it is faster.
 
 
+## No conflict mode
+
+By default, innate.js uses the `$` namespace. If you want to use it in conjuction with another library using `$`, just enable no-conflict mode:
+
+```js
+innate.noConflict()
+```
+
+This will remove innate from the `$` variable and restore the original owner.
+
+Optionally, you can define a custom namespace:
+
+```js
+innate.noConflict( 'I' )
+```
+
+That way, innate will be available as `I`:
+
+```js
+var elements = I.find( '.some-class' )
+```
 
 

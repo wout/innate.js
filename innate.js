@@ -1,6 +1,6 @@
 ;( function() {
 
-  var $ = {
+  var innate = window.innate = {
     // Find many
     find: function( subject, context, singular ) {
       // return as is if given subject is aything other than a string (selector)
@@ -9,7 +9,7 @@
       } else if ( subject instanceof Element || subject instanceof HTMLDocument ) {
         return [ subject ] 
       } else if ( subject instanceof NodeList || subject instanceof HTMLCollection ) {
-        return $.toArray( subject )
+        return innate.toArray( subject )
       }
 
       // find selector type
@@ -25,11 +25,11 @@
 
         // by tag name
         } else if ( match[2] ) {
-          return $.toArray( context.getElementsByTagName( subject ) )
+          return innate.toArray( context.getElementsByTagName( subject ) )
 
         // by class name
         } else if ( m = match[3] ) {
-          return $.toArray( context.getElementsByClassName( m ) )
+          return innate.toArray( context.getElementsByClassName( m ) )
         }
       } else {
         // find one element
@@ -38,7 +38,7 @@
 
         // find all
         } else {
-          return $.toArray( context.querySelectorAll( subject ) )
+          return innate.toArray( context.querySelectorAll( subject ) )
         }
       }
     }
@@ -46,15 +46,15 @@
 
     // Find one
   , first: function( selector, context ) {
-      return $.find( selector, context, true )[0]
+      return innate.find( selector, context, true )[0]
     }
 
 
     // Append elements
   , appendTo: function( el, parent ) {
-      parent = $.first( parent )
+      parent = innate.first( parent )
 
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         parent.appendChild( element )
       })
     }
@@ -62,23 +62,23 @@
 
     // Prepend elements
   , prependTo: function( el, parent ) {
-      return $.insertAt( el, parent, 0 )
+      return innate.insertAt( el, parent, 0 )
     }
 
 
     // Insert elements at a given position
   , insertAt: function( el, parent, i ) {
-      parent = $.first( parent )
+      parent = innate.first( parent )
       
       // get position if an element is given
       if ( i instanceof Element ) {
-        i = $.toArray( parent.children ).indexOf( i )
+        i = innate.toArray( parent.children ).indexOf( i )
       }
 
       // make sure position is a positive number or zero
       i = typeof i !== 'number' || i < 0 ? 0 : i
 
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         parent.insertBefore( element, parent.children[i] )
         i++
       })
@@ -87,7 +87,7 @@
 
     // Remove element
   , remove: function( el ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         element.parentNode.removeChild( element )
       })
     }
@@ -95,7 +95,7 @@
 
     // Add event listener
   , on: function( el, type, handler, options ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         element.addEventListener( type, handler, options )
       })
     }
@@ -103,7 +103,7 @@
 
     // Remove event listener
   , off: function( el, type, handler, options ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         element.removeEventListener( type, handler, options )
       })
     }
@@ -111,7 +111,7 @@
 
     // Live event listener
   , live: function( el, type, selector, handler, options ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         element.addEventListener( type, function( event ) {
           var found, e = event.target || event.srcElement
 
@@ -129,7 +129,7 @@
 
     // Show elements
   , show: function( el ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         showHide( element, true )
       })
     }
@@ -137,7 +137,7 @@
 
     // Hide elements
   , hide: function( el ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         showHide( element )
       })
     }
@@ -145,7 +145,7 @@
 
     // Toggle visibility
   , toggle: function( el, show ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         showHide( element, show === true || ( show == null && getStyle( element ).display == 'none' ) )
       })
     }
@@ -155,18 +155,18 @@
   , css: function( el, key, value ) {
       // act as a setter with an object of properties
       if ( typeof key === 'object' ) {
-        for ( var property in key ) $.css( el, property, key[property] )
-        return $.find( el ) 
+        for ( var property in key ) innate.css( el, property, key[property] )
+        return innate.find( el ) 
 
       // act as a setter with a single property
       } else if ( arguments.length == 3 ) {
-        return $.each( el, function( element ) {
+        return innate.each( el, function( element ) {
           element.style[key] = value
         })
 
       // act as a getter for a single property
       } else if ( arguments.length <= 2 ) {
-        value = getStyle( $.first( el ) )
+        value = getStyle( innate.first( el ) )
         return arguments.length == 1 ? value : value[key]
       }
     }
@@ -176,22 +176,22 @@
   , attr: function( el, key, value ) {
       // act as a setter with an object of properties
       if ( typeof key === 'object' ) {
-        for ( var property in key ) $.attr( el, property, key[property] )
-        return $.find( el ) 
+        for ( var property in key ) innate.attr( el, property, key[property] )
+        return innate.find( el ) 
 
       // act as a setter with a single property
       } else if ( arguments.length == 3 ) {
-        return $.each( el, function( element ) {
+        return innate.each( el, function( element ) {
           element.setAttribute( key, value )
         })
 
       // act as a getter for a single property
       } else if ( arguments.length == 2 ) {
-        return $.first( el ).getAttribute( key )
+        return innate.first( el ).getAttribute( key )
 
       // act as a getter for an object of properties
       } else if ( arguments.length == 1 ) {
-        for ( var a, attr = {}, attrs = $.first( el ).attributes, i = attrs.length - 1; i >= 0; i-- ) {
+        for ( var a, attr = {}, attrs = innate.first( el ).attributes, i = attrs.length - 1; i >= 0; i-- ) {
           attr[attrs[i].nodeName] = attrs[i].nodeValue
         }
 
@@ -202,7 +202,7 @@
 
     // Remove an attribute
   , removeAttr: function( el, key ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         element.removeAttribute( key )
       })
     }
@@ -212,20 +212,20 @@
   , data: function( el, key, value ) {
       // act as a setter with an object of properties
       if ( typeof key === 'object' ) {
-        for ( var property in key ) $.data( el, property, key[property] )
-        return $.find( el )
+        for ( var property in key ) innate.data( el, property, key[property] )
+        return innate.find( el )
 
       // act as a setter with a single property
       } else if ( arguments.length == 3 ) {
-        return $.attr( el, 'data-' + key, value )
+        return innate.attr( el, 'data-' + key, value )
 
       // act as a getter for a single property
       } else if ( arguments.length == 2 ) {
-        return $.attr( el, 'data-' + key )
+        return innate.attr( el, 'data-' + key )
 
       // act as a getter for an object of properties
       } else if ( arguments.length == 1 ) {
-        var attributes = $.attr( el )
+        var attributes = innate.attr( el )
           , attr = {}
           , k
 
@@ -243,19 +243,19 @@
 
     // Remove data attribute
   , removeData: function( el, key ) {
-      return $.removeAttr( el, 'data-' + key )
+      return innate.removeAttr( el, 'data-' + key )
     }
 
 
     // Test the existance of a class
   , hasClass: function( el, name ) {
-      return hasClass( $.first( el ), name )
+      return hasClass( innate.first( el ), name )
     }
 
 
     // Add a given class
   , addClass: function( el, name ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         addClass( element, name )
       })
     }
@@ -263,7 +263,7 @@
 
     // Remove a given class
   , removeClass: function( el, name ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         removeClass( element, name )
       })
     }
@@ -271,7 +271,7 @@
 
     // Toggle a given class
   , toggleClass: function( el, name, force ) {
-      return $.each( el, function( element ) {
+      return innate.each( el, function( element ) {
         force === true || ( force == null && ! hasClass( element, name ) ) ?
           addClass( element, name ) : removeClass( element, name )
       })
@@ -281,7 +281,7 @@
     // Perform a block on each element
   , each: function ( el, closure ) {
       // ensure element list
-      el = $.find( el )
+      el = innate.find( el )
 
       // execute closure
       if ( typeof closure === 'function' ) {
@@ -317,7 +317,7 @@
 
     // Get the offset of an element
   , offset: function( el ) {
-      var rect = $.first( el ).getBoundingClientRect()
+      var rect = innate.first( el ).getBoundingClientRect()
         , scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
         , scrollTop = window.pageYOffset || document.documentElement.scrollTop
 
@@ -334,7 +334,7 @@
 
       // use query to find form
       if ( typeof form === 'string' ) {
-        form = $.first( form )
+        form = innate.first( form )
       }
 
       if ( typeof form == 'object' && form.nodeName == 'FORM' ) {
@@ -378,7 +378,7 @@
 
       settings.method = 'GET'
 
-      return $.ajax( settings )
+      return innate.ajax( settings )
     }
 
 
@@ -392,7 +392,7 @@
         settings = url
       }
 
-      return $.ajax( settings )
+      return innate.ajax( settings )
     }
 
 
@@ -406,7 +406,7 @@
       // ensure complete settings
       settings = typeof url === 'object' ? url : settings || {}
       if ( typeof url === 'string' ) settings.url = url
-      settings = $.extend( defaults, settings )
+      settings = innate.extend( defaults, settings )
 
       // convert post data from object to string
       if ( typeof settings.data === 'object' ) {
@@ -619,10 +619,10 @@
   // parse and cache regexes
   var regex = {
     // ID, TAG, CLASS
-    selector: /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/
+    selector: /^(?:#([\w-]+)|(\w+)|\.([\w-]+))innate/
 
     // tag names of form fields to ignore on form serialization
-  , field: /^(file|reset|submit|button)$/
+  , field: /^(file|reset|submit|button)innate/
 
     // data attribute prefix
   , data: /^data-/
@@ -635,11 +635,24 @@
 
   // Use AMD or CommonJS, fall back on global scope if both are not present.
   if ( typeof define === 'function' && define.amd ) {
-    define( function() { return $ })
+    define( function() { return innate })
   } else if ( typeof exports !== 'undefined' ) {
-    exports.$ = $
+    exports.innate = innate
   } else {
-    this.$ = $
+    // store any original users of $
+    var _$ = this.$
+      , _self = this
+
+    this.$ = innate
+
+    // no conflict mode enabler
+    innate.noConflict = function( ns ) {
+      // restore original $
+      _self.$ = _$
+
+      // store innate in custom namespace
+      return _self[ns || 'innate'] = innate
+    }
   }
 
 }).call( this )
