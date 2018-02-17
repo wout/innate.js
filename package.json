@@ -6,7 +6,7 @@
   "keywords":     ["dom", "ajax", "css", "event"],
   "author":       "Wout Fierens <wout@mick-wout.com>",
   "main":         "innate.js",
-  "version":      "0.2.0",
+  "version":      "0.2.1",
   "jam": {
     "include": [
       "innate.js",
