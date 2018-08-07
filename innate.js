@@ -7,7 +7,7 @@
       if ( Array.isArray( subject ) ) {
         return subject
       } else if ( subject instanceof Element || subject instanceof HTMLDocument ) {
-        return [ subject ] 
+        return [ subject ]
       } else if ( subject instanceof NodeList || subject instanceof HTMLCollection ) {
         return innate.toArray( subject )
       }
@@ -69,7 +69,7 @@
     // Insert elements at a given position
   , insertAt: function( el, parent, i ) {
       parent = innate.first( parent )
-      
+
       // get position if an element is given
       if ( i instanceof Element ) {
         i = innate.toArray( parent.children ).indexOf( i )
@@ -127,6 +127,16 @@
     }
 
 
+    // Trigger an event on an element
+  , trigger: function( el, type ) {
+      return innate.each( el, function( element ) {
+        var e = document.createEvent( 'HTMLEvents' )
+        e.initEvent( type, false, true )
+        element.dispatchEvent( e )
+      })
+    }
+
+
     // Show elements
   , show: function( el ) {
       return innate.each( el, function( element ) {
@@ -156,7 +166,7 @@
       // act as a setter with an object of properties
       if ( typeof key === 'object' ) {
         for ( var property in key ) innate.css( el, property, key[property] )
-        return innate.find( el ) 
+        return innate.find( el )
 
       // act as a setter with a single property
       } else if ( arguments.length == 3 ) {
@@ -177,7 +187,7 @@
       // act as a setter with an object of properties
       if ( typeof key === 'object' ) {
         for ( var property in key ) innate.attr( el, property, key[property] )
-        return innate.find( el ) 
+        return innate.find( el )
 
       // act as a setter with a single property
       } else if ( arguments.length == 3 ) {
@@ -443,7 +453,7 @@
               settings.statusCode[xhr.status]( xhr )
             }
           }
-          
+
           // success callback
           if ( xhr.status == 200 ) {
             if ( typeof settings.success === 'function' ) settings.success( result, xhr )
@@ -456,7 +466,7 @@
       // error callbacks
       xhr.onabort = function() {
         if ( typeof settings.error === 'function' ) settings.error( xhr, 'abort' )
-      } 
+      }
       xhr.onerror = function() {
         if ( typeof settings.error === 'function' ) settings.error( xhr, 'error' )
       }
@@ -524,13 +534,13 @@
     iframe.setAttribute( 'width', 0 )
     iframe.setAttribute( 'height', 0 )
     document.documentElement.appendChild( iframe )
-  
+
     var doc = ( iframe.contentWindow || iframe.contentDocument ).document
-  
+
     // IE support
     doc.write()
     doc.close()
-  
+
     var testEl = doc.createElement( tag )
     doc.documentElement.appendChild( testEl )
     var display = getStyle( testEl ).display
@@ -545,7 +555,7 @@
     var value = el.getAttribute( 'data-olddisplay' )
       , display = el.style.display
       , computedDisplay = getStyle( el ).display
-  
+
     if ( show ) {
       if ( ! value && display === 'none' ) {
         el.style.display = ''

@@ -27,3 +27,14 @@ describe( 'live()', function() {
   })
 
 })
+
+
+describe( 'trigger()', function() {
+
+  it( 'returns the list of elements returned for the given selector', function() {
+    var mastaba = function() {}
+    var el = $.trigger( document.body, 'click' )
+    expect( Array.isArray( el ) ).toBeTruthy()
+  })
+
+})

@@ -203,6 +203,16 @@ The fifth parameter will take an object with options:
 $.live( document, 'click', 'a', handler, options )
 ```
 
+#### `$.trigger()`
+
+`returns`: __`array`__
+
+Trigger an event type on the given element list:
+
+```js
+$.trigger( 'a.cancel-button', 'click' )
+```
+
 ### CSS
 
 #### `$.show()`
@@ -455,7 +465,7 @@ $.ajax( '/api/item/1.json', {
 , complete: function() {}
 , error: function() {}
 , abort: function() {}
-  
+
   // headers
 , headers: {}
 })
@@ -588,5 +598,3 @@ That way, innate will be available as `I`:
 ```js
 var elements = I.find( '.some-class' )
 ```
-
-
