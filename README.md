@@ -157,6 +157,16 @@ Remove one or more elements from the DOM.
 $.remove( '.removable' )
 ```
 
+#### `$.element()`
+
+`returns`: __`Element`__
+
+Convert a HTML string to a DOM node.
+
+```js
+$.element( '<div id="innate_id" class="innate-class">' )
+```
+
 ### Events
 
 #### `$.on()`
@@ -558,24 +568,6 @@ var data_string = $.serialize( '.main-form', function( input ) {
   return input.nodeName === 'INPUT'
 })
 ```
-
-
-## Sugarless
-
-Some things in jQuery are nice to have. Like creating elements with class names and ids in one go:
-
-```js
-$( '<div id='myDiv' class='class1 class2'>' )
-```
-
-innate.js endorses the use of vanilla JS. So the same can be achieved with:
-
-```js
-$.attr( document.createElement( 'div' ), { id: 'myDiv', class: 'class1 class2' })
-```
-
-A bit less concise, but does the same thing and it is faster.
-
 
 ## No conflict mode
 

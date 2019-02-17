@@ -7,6 +7,12 @@ describe( 'appendTo()', function() {
     expect( $.first( '#dom' ).lastChild ).toBe( element )
   })
 
+  it( 'it appends a html string to the given element', function() {
+    var element = '<p id="appendee">Apendee</p>'
+    $.appendTo( element, '#dom' )
+    expect( $.first( '#dom' ).lastChild.id ).toBe( 'appendee' )
+  })
+
   it( 'returns the appended list of elements', function() {
     var div = document.createElement( 'div' )
     var appended = $.appendTo( div, '#dom' )
@@ -24,6 +30,12 @@ describe( 'prependTo()', function() {
     $.attr( element, 'id', 'prependee' )
     $.prependTo( element, '#prepend' )
     expect( $.first( '#prepend' ).children[0] ).toBe( element )
+  })
+
+  it( 'it prepends a html string to the given element', function() {
+    var element = '<p class="prependee">Prependee</p>'
+    $.prependTo( element, '#prepend' )
+    expect( $.first( '#prepend' ).children[0].classList ).toContain( 'prependee' )
   })
 
   it( 'returns the prepended list of elements', function() {

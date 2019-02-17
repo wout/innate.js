@@ -1,8 +1,18 @@
 ;( function() {
 
   var innate = window.innate = {
+    // Ensure DOM Node
+    element: function( subject ) {
+      if ( typeof subject === 'string' ) {
+        var doc = new DOMParser().parseFromString( subject, 'text/html' )
+        return doc.body.firstChild
+      }
+
+      return subject
+    }
+
     // Find many
-    find: function( subject, context, singular ) {
+  , find: function( subject, context, singular ) {
       // return as is if given subject is aything other than a string (selector)
       if ( Array.isArray( subject ) ) {
         return subject
@@ -10,6 +20,8 @@
         return [ subject ]
       } else if ( subject instanceof NodeList || subject instanceof HTMLCollection ) {
         return innate.toArray( subject )
+      } else if ( typeof subject === 'string' && subject.trim()[0] === '<' ) {
+        return [ innate.element( subject ) ]
       }
 
       // find selector type

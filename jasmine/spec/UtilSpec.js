@@ -1,3 +1,20 @@
+describe( 'element()', function() {
+
+  it( 'returns a dom node', function() {
+    var el = $.element('<p>Hello</p>')
+    expect( el.nodeName ).toBe( 'P' )
+    expect( el.innerText ).toBe( 'Hello' )
+  })
+
+  it( 'returns a dom node with its attributes', function() {
+    var el = $.element('<div id="innate_id" class="innate-class">')
+    expect( el.nodeName ).toBe( 'DIV' )
+    expect( el.id ).toBe( 'innate_id' )
+    expect( el.className ).toBe( 'innate-class' )
+  })
+
+})
+
 describe( 'each()', function() {
 
   afterAll( function() {
